@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home</title>
+    <!-- Compiled and minified CSS Materialize-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<!-- Compiled and minified JavaScript Materialize -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<!-- Google font icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="./assets/js/config.js"></script>
+    <script type="text/javascript" src="./assets/js/main.js"></script>
+    <script type="text/javascript" src="./assets/js/getstarted.js"></script>
+    <script>
+        $(document).ready(function () {
+            StartPoint.Index.Init();
+        });
+    </script>
+
+</head>
+
+<body>
+    <!-- <header> -->
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo"> HABITUAL</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="home.html">Home</a></li>
+                    <li>
+                            <!-- Modal Trigger -->
+                            <a class="waves-effect waves-light btn modal-trigger" id="aLogin" href="#modal1">Login</a>
+    
+                            <!-- Modal Structure -->
+                            <div id="modal1" class="modal modal-fixed-footer">
+                                <div class="modal-content">
+                                    <div class="row">
+                                        <h2>Login</h2>
+                                        <blockquote>
+                                            How's your habit going?
+                                        </blockquote>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="txtLogEmail" type="email" class="validate">
+                                            <label for="txtLogEmail">Email</label>
+                                            <span class="helper-text" data-error="wrong" data-success="right">e.g Bob@gmail.com</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="txtLogPassword" type="password" class="validate">
+                                            <label for="txtLogPassword">Password</label>
+                                        </div>
+                                    </div>
+                        
+                                    </form>
+                                    <a class="waves-effect waves-light btn-large" id="aLogin">Login</a><!-- Submit links to dashboard-->
+                        
+                                </div>
+                                </div>
+                            </div>
+                        </li>
+                    <li style="display:none"><a id="btnLogOut">Log Out</a></li>
+                </ul>
+            </div>
+        </nav>
+    <!-- </header> -->
+    <main>
+        <div class="container">
+            <div class="row">
+                <div id="habit" class="col s12"> <!-- this needs to be fixed, cannot have 2 ids-->
+                    <div class="card-panel">
+                        <div class="card-content">
+                                <h2>I would like to built the habit of...</h2>
+                                <div id="habits"><!-- this needs to be fixed, cannot have 2 ids-->
+                                    <button class="habits btn-large waves-effect waves-light" id="yoga" data-state="false" data-position=3 data-name="yoga" data-id="1">Yoga</button>
+                                    <button class="habits btn-large waves-effect waves-light" id="gym" data-state="false" data-position=1 data-name="gym fitness" data-id="2">Gym</button>
+                                    <button class="habits btn-large waves-effect waves-light" id="park" data-state="false" data-position=2 data-name="public park" data-id="3">Park</button>
+                                    <button class="habits btn-large waves-effect waves-light" id="spin" data-state="false" data-position=4 data-name="spin cycle class" data-id="4">Spin</button>
+                                    <button class="habits btn-large waves-effect waves-light" id="dance"  data-state="false" data-position=5 data-name="dance class" data-id="5">Dance</button>
+                                    <button class="habits btn-large waves-effect waves-light" id="rock" data-state="false" data-position=6 data-name="rock climbing" data-id="6">Rock Climbing</button>
+                                </div>
+                                <div>
+                                    <br>
+                                    <button id="btnNext" class="btn accent-1 waves-red">Next</button>
+                                </div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+            <div id="signup" class="row">
+                <h1></h1>
+                <div id="habit" class="col s12">
+                    <div class="card-panel">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Name" id="txtName" type="text" class="validate">
+                                    <label for="txtName">Name</label>
+                                    <span class="helper-text" data-error="wrong" data-success="right">e.g Bob Anderson</span>
+                                </div>
+                                <!-- <div class="input-field col s6">
+                                    <input id="last_name" type="text" class="validate">
+                                    <label for="last_name">Last Name</label>
+                                    <span class="helper-text" data-error="wrong" data-success="right">e.g Anderson</span>
+                                </div> -->
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="txtEmail" type="email" class="validate">
+                                    <label for="txtEmail">Email</label>
+                                    <span class="helper-text" data-error="wrong" data-success="right">e.g Bob@gmail.com</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="txtPassword" type="password" class="validate">
+                                    <label for="txtPassword">Password</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="txtConfirmPassword" type="password" class="validate">
+                                    <label for="txtConfirmPassword">Confirm password</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <label>Gender</label>
+                                    <select class="browser-default" id="gender">
+                                        <option value="" disabled selected>Choose your gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <label>Age</label>
+                                    <select class="browser-default" id="age">
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="btnSignUp" class="btn waves-effect waves-light">Sign Up</button>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+        <!-- <div id="logIn" style="display:none">
+            <input type="email" name="" placeholder="email" id="txtLogEmail">
+            <input type="password" name="" placeholder="password" id="txtLogPassword">
+            <button id="btnLogIn">Login</button>
+        </div> -->
+    </main>
+    <footer>
+
+    </footer>
+    
+</body>

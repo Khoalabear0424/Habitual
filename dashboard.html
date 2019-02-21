@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Compiled and minified CSS Materialize-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Google font icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script> <!-- Charts.js CDN-->
+    <link href="./assets/css/materialize.css" type="text/css" rel="stylesheet">
+    <link href="./assets/css/style.css" type="text/css" rel="stylesheet">
+    <!-- Custom CSS-->
+    <link href="./assets/css/custom.css" type="text/css" rel="stylesheet">
+    <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+    <script type="text/javascript" src="./assets/js/config.js"></script>
+    <link href="./assets/css/flag-icon.min.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="./assets/js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        .collapsible-header, .collapsible-body {
+            color: #ffff;
+        }
+
+        .hover:hover{
+            background-color: #00AEFF;
+            color:white;
+            cursor: pointer;
+        }
+
+        .preloader-background {
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+    	background-color: #eee;
+            
+	    position: fixed;
+	    z-index: 100;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    bottom: 0;	
+        }   
+
+        .row{
+            margin-bottom: -29px !important;
+        }
+
+        main{
+            margin: 20px 100px !important;
+        }
+
+        #timerDisplay{
+            font-size: 1.7em;
+        }
+
+        canvas{
+            height:100px !important;
+            width: 85% !important;
+        }
+
+        #myChart{
+            margin: auto;
+        }
+
+        #habit1{
+            padding: 0px 0px 5px 0px;
+        }
+
+    </style>
+</head>
+
+<body class="" cz-shortcut-listen="true">
+    <nav class="hoverable">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo"> HABITUAL</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="hoverable"><a href="dashboard.html">Home</a></li>
+                <li class="hoverable"><a href="analytics.html">My Rewards</a></li>
+                <li>
+                    <!-- Modal Trigger -->
+                    <a class="waves-effect waves-light btn modal-trigger" id="aLogin" href="#modal1">Login</a>
+
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal modal-fixed-footer">
+                        <div class="modal-content">
+                            <div class="row">
+                                <h2>Login</h2>
+                                <blockquote>
+                                    How's your habit going?
+                                </blockquote>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="txtLogEmail" type="email" class="validate">
+                                    <label for="txtLogEmail">Email</label>
+                                    <span class="helper-text" data-error="wrong" data-success="right">e.g Bob@gmail.com</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="txtLogPassword" type="password" class="validate">
+                                    <label for="txtLogPassword">Password</label>
+                                </div>
+                            </div>
+
+                            </form>
+                            <a class="waves-effect waves-light btn-large" id="aLogin">Login</a><!-- Submit links to dashboard-->
+
+                        </div>
+                    </div>
+        </div>
+        </li>
+        <li style="display:none"><a id="btnLogOut">Log Out</a></li>
+        </ul>
+        </div>
+    </nav>
+    <main>
+
+        <!-----------------MAP DIV HERE-------------------->
+        <div id="sales-chart">
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <div id="revenue-chart" class="card">
+                        <div class="card-content">
+                            <div class="container center-align allLocations">
+                                <h4 class="header mt-0">Find Habits :
+                                    <button class="btn location" data-state="false" data-position=1 data-name="gym fitness">Gym</button>
+                                    <button class="btn location" data-state="false" data-position=2 data-name="public park">Parks</button>
+                                    <button class="btn location" data-state="false" data-position=3 data-name="yoga">Yoga</button>
+                                    <button class="btn location" data-state="false" data-position=4 data-name="spin cycle class">Spin</button>
+                                    <button class="btn location" data-state="false" data-position=5 data-name="dance class">Dance</button>
+                                    <button class="btn location" data-state="false" data-position=6 data-name="rock climbing">Rock
+                                        Climbing</button>
+                                </h4>
+                            </div><br>
+                            <!-- <h2>Find Near You: <input type="text"><button class="btn btn-primary" id="newButt" onclick="addButt()">Add</button> <button class="btn btn-warning" id="selectHabit">Select Habit!</button></h2> -->
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="yearly-revenue-chart">
+                                        <div class="preloader-background">
+                                            <div class="preloader-wrapper big active">
+                                                <div class="spinner-layer spinner-blue-only">
+                                                    <div class="circle-clipper left">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                    <div class="gap-patch">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                    <div class="circle-clipper right">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- MAP HERE -->
+                                        <div id="map" style="width:100%;height:90%;padding:100px;margin: auto;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+        <!-- Bottom Section
+                     Daily Data Chart -->
+        <div id="daily-data-chart">
+            <div class="row">
+                <div class="col s12 m4 l4">
+                    <div class="card pt-0 pb-0 habitButton">
+
+                        <div class="padding-2 ml-2 center-align">
+                            <div id="habit1">
+                                <h4 id="habitName">Pick a Habit!</h4>
+                                <div>
+                                    <p class="mt-2 mb-0" id="habitAddress"></p>
+                                </div>
+                                <!-- Modal Trigger -->
+                                <button data-target="modal2" class="btn modal-trigger mt-2" id="modifyHabit">Modify</button>
+                            </div>
+
+                            <!-- Modal Structure -->
+                            <div id="modal2" class="modal">
+                                <div class="modal-content grey-text">
+
+                                    <p>Are you sure you want to quit?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- Add redirect to href below for MODIFY BUTTON -->
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="agreeModify">Agree</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4 l4 center-align">
+                    <div class="card pt-0 pb-0 habitButton center-align" id="completeHabit1">
+                        <div class="padding-2 ml-2">
+                            <h4>Complete Habit!</h4>
+                            <div id="timerDisplay">0:00</div>
+                            <div class="progress">
+                                <div id="habit1Timer" class="determinate" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4 l4 center-align">
+                    <div class="card pt-0 pb-0" id="habit1Metrics">
+                        <div class="padding-2 ml-2">
+                            <!-- Chart.js Graph added here -->
+                            <h4>Total Completed</h4>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        </div>
+
+        </div>
+        <!--end container-->
+        </div>
+        </section>
+        <!-- END CONTENT -->
+
+        </div>
+        <!-- END WRAPPER -->
+        </div>
+        <!-- END MAIN -->
+        <!-- //////////////////////////////////////////////////////////////////////////// -->
+        <!-- START FOOTER -->
+        <!-- <footer class="page-footer" style="margin:0;">
+           <div class="footer-copyright">
+               &copy; 2019 Habitual
+           </div>
+        </footer> -->
+    </main>
+    <script src="./assets/js/map.js"></script>
+    <script src="./assets/js/chart.js"></script>
+    <script type="text/javascript">
+        function resetHabit() {
+            $('.progress').slideUp('slow');
+            $('#timerDisplay').slideUp('slow');
+            $('#completeHabit1').slideUp('slow');
+            $('#habit1Metrics').slideUp('slow');
+            $('#modifyHabit').hide('slow');
+            $('#habitName').text('Pick a Habit!');
+            $('#habitAddress').text('');
+            setHabitButtonState = true;
+            markerSetAsHabit = false;
+            preloadMap = true
+            userDetail.habits[0].location.lat = 0;
+            userDetail.habits[0].location.long = 0;
+            userDetail.habits[0].name = '';
+            userDetail.habits[0].address = '';
+            userDetail.habits[0].totalCompleted = new Array(12).fill(0)
+            userDetail.habits[0].lastDayCompleted = new Array(3).fill(0)
+            userDetail.habits[0].state = true;
+            updateUserInformation(userDetail)
+        }
+
+        $('#agreeModify').on('click', resetHabit);
+
+        $('.location').on('click', searchButton);
+        $('#habit1').on('click', function () {
+            if (setHabitButtonState == true) {
+                markerSetAsHabit = true;
+            }
+        });
+
+        $('#completeHabit1').on('click', function () {
+            if (timerCanStart == true && getDistanceFromLatLonInFt(myPosition[0], myPosition[1], userDetail.habits[
+                0].location.lat, userDetail.habits[0].location.long)) {
+                timerVar = setInterval(timerQuarter, 1000);
+                timerCanStart = false;
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.modal').modal();
+        });
+
+        var scriptTag = $('<script>').attr('src',
+            `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`).attr('async', '').attr(
+                'defer', '');
+        $('body').append(scriptTag);
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./assets/js/materialize.min.js"></script>
+</body>
+
+</html>

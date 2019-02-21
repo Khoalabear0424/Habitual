@@ -1,0 +1,4 @@
+1. For every new feature we must to creare a new branch with the following notation f-[pageName]
+2. All new branches must be created from development branch
+3. The initial development should start wuth dummy data 
+4. all the pull request must include everybody (in this case is easy there are just 3 of us)

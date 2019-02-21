@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="./assets/js/main.js"></script>
+    <script type="text/javascript" src="./assets/js/config.js"></script>
+    <script type="text/javascript" src="./assets/js/profile.js"></script>
+    <script>
+        $(document).ready(function () {
+            Profile.Index.Init();
+        });
+    </script>
+</head>
+<body>
+		<header>
+				<!-- Nav Bar -->
+				<nav>
+					<div class="nav-wrapper">
+						<a href="#" class="brand-logo"> HABITUAL</a>
+						<ul id="nav-mobile" class="right hide-on-med-and-down">
+							<li><a href="home.html">Home</a></li>
+							<li><a id="txtDashboard"href="dashboard.html">Dashboard</a></li>
+							<li><a id="btnLogOut" class="waves-effect waves-light btn modal-trigger">Log Out</a></li>
+							<li>
+								<!-- Modal Trigger -->
+								<a class="waves-effect waves-light btn modal-trigger" id="alogIn" href="#modal1">Login</a>
+		
+								<!-- Modal Structure -->
+								<div id="modal1" class="modal modal-fixed-footer">
+									<div class="modal-content">
+										<div class="row">
+											<h2>Login</h2>
+											<blockquote>
+												How's your habit going?
+											</blockquote>
+										</div>
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="email" type="email" class="validate">
+												<label for="email">Email</label>
+												<span class="helper-text" data-error="wrong" data-success="right">e.g Bob@gmail.com</span>
+											</div>
+										</div>
+										<!-- <div class="row">
+											<div class="input-field col s12">
+												<input id="password" type="password" class="validate">
+												<label for="password">Password</label>
+											</div>
+										</div> -->
+							
+										</form>
+										<a class="waves-effect waves-light btn-large" id="alogIn">Login</a><!-- Submit links to dashboard-->
+							
+									</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</nav>
+		
+			</header>
+	<main>
+		<div class="container">
+			<div class="row">
+				<h2>Account Details</h2>
+				<div class="card-panel">
+					<div class="card-content">
+						<div class="input-field col s12">
+							<input placeholder="Name" id="txtName" type="text" class="validate">
+							<label for="txtName">Name</label>
+							<span class="helper-text" data-error="wrong" data-success="right">e.g Bob Anderson</span>
+						</div>
+						<div class="row" >
+                                <div class="input-field col s12">
+                                    <input id="txtEmail" type="email" class="validate" disabled>
+                                    <label for="txtEmail"></label>
+                                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                                </div>
+                            </div>
+                            <!-- <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="txtPassword" type="password" class="validate">
+                                    <label for="txtPassword">Password</label>
+                                </div>
+                            </div> -->
+                            <div class="row">
+                                <div class="col s12">
+                                    <label>Gender</label>
+                                    <select class="browser-default" id="gender">
+                                        <option value="" disabled selected>Choose your gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <label>Age</label>
+                                    <select class="browser-default" id="age">
+                                    </select>
+                                </div>
+                            </div>
+					</div>
+				</div>
+				<!-- <button id="btnLogOut">Log Out</button> -->
+				<button id="btnUpdate" class="waves-effect waves-light btn">Save Changes</button>
+			</div>
+		</div>
+	</main>
+	<footer>
+		
+	</footer>
+</body>
+</html>

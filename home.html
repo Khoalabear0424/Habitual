@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Home</title>
+	<!-- Compiled and minified CSS Materialize-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection">
+	<link rel="stylesheet" type="text/css" href="./assets/css/style.css" media="screen,projection">
+	<link rel="stylesheet" type="text/css" href="./assets/css/home.css">
+	<!-- Google font icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- Compiled and minified JavaScript Materialize -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+	<script type="text/javascript" src="./assets/js/config.js"></script>
+	<script type="text/javascript" src="./assets/js/main.js"></script>
+	
+	<script type="text/javascript" src="./assets/js/home.js"></script>
+	<script type="text/javascript" src="./assets/js/getstarted.js"></script>
+	<script type="text/javascript" src="./assets/js/profile.js"></script>
+	<!--Let browser know website is optimized for mobile-->
+</head>
+
+<body>
+	<!-- Header makes materialize nav unaligned -->
+	<!-- <header> -->
+		<nav class="hoverable">
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo"> HABITUAL</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="home.html">Home</a></li>
+					<li><a id="btnLogOut" class="waves-effect waves-light btn modal-trigger hoverable">Log Out</a></li>
+					<li>
+						<!-- Modal Trigger -->
+						<a id="aLoginNav" class="waves-effect waves-light btn modal-trigger" href="#modal1">Login</a>
+
+						<!-- Modal Structure -->
+						<div id="modal1" class="modal modal-fixed-footer">
+							<div class="modal-content">
+								<div class="row">
+									<h2>Login</h2>
+									<blockquote>
+										You can do it! We believe in you.
+									</blockquote>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="email" type="email" class="validate">
+										<label for="email">Email</label>
+										<span class="helper-text" data-error="wrong" data-success="right">e.g Bob@gmail.com</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="password" type="password" class="validate">
+										<label for="password">Password</label>
+									</div>
+								</div>
+
+								</form>
+								<a class="waves-effect waves-light btn-large" id="aLogin">Login</a><!-- Submit links to dashboard-->
+
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+		</nav>
+
+	<!-- </header> Header makes materialize nav unaligned -->
+	<main>
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<div class="card-panel hoverable">
+						<div class="card-content white-text">
+							<h2>Consistency Is Key!</h2>
+							<!-- <span class="card-title">A Habit is Power</span> -->
+							<p>Here at habitual, we believe that the true meaning of success starts with a foundation in routines that get
+								you there. We want to make your life easier, and with the click of a button you will be on your journey towards
+								achieving success! A scientific study shows that after 3 months of consistency, your hard-to-conquer goals will
+								be second nature.</p>
+							<img class="materialboxed" width="450px" src="./assets/imgs/habitgraph1.png" alt="graph of habit">
+						</div>
+					</div>
+					<!-- Button Links to getstarted.html -->
+					<button class="btn waves-effect waves-light hoverable" type="submit" name="action" onclick="window.location.href='getstarted.html'">Give
+						it a try!
+						<i class="material-icons right"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer>
+
+	</footer>
+	<script>
+		$(document).ready(function () {
+			Home.Index.Init();
+			//Profile.Index.Init();
+		});
+	</script>
+</body>
+
+</html>
